@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    restart: always
+    container_name: tracker_web
+    command: /bin/sh /backend-api/entrypoint.sh
+    # volumes:
+    #   - .:/backend-api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - tracker-db
+
+  tracker-db:
+    image: postgres
+    restart: always
+    container_name: tracker_db
+    environment:
+        POSTGRES_USER: pde
+        POSTGRES_DB: pde
+        POSTGRES_HOST : localhost
+        POSTGRES_PASSWORD: pde
+        POSTGRES_HOST_AUTH_METHOD: trust
+    expose:
+      - 5432
+    volumes:
+      - tracker_data:/var/lib/postgresql/data
+
+volumes:
+  tracker_data:
