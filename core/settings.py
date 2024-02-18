@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'task',
-    'accounts'
+    'accounts',
+    'operation',
 ]
 
 
@@ -103,7 +103,7 @@ DATABASES = {
 
 MIGRATION_MODULES = {
     'accounts': 'migrations.accounts',
-    'task': 'migrations.task',
+    'operation': 'migrations.operation',
 }
 
 # Password validation
