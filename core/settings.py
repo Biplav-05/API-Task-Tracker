@@ -153,6 +153,9 @@ configure_observer(api_url="ERROR_API", error_key="ERROR_KEY")
 AUTH_USER_MODEL= 'accounts.CustomUserAccount'
 
 REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'accounts.authentication.AccountJWTAuthentication',
+    ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ]

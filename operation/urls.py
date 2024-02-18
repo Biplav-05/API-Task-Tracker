@@ -1,6 +1,6 @@
 from django.urls import path
-from operation.views import Test
+from .views import work_space_view
 
 urlpatterns = [
-    path('', Test.as_view(), name='google-access-token-generate'),
+    path('workspace', work_space_view.WorkSpaceListView.as_view(), name='workspace-list-view'),
 ]   

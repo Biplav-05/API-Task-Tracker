@@ -9,6 +9,8 @@ from rest_framework.permissions import AllowAny
 
 
 class UserEmailSignUpView(APIView):
+    authentication_classes = []
+    permission_classes = [AllowAny]
 
     def post(self, request):
         """
