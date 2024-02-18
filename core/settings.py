@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'tasks',
+    'task',
     'accounts'
 ]
 
@@ -101,6 +101,11 @@ DATABASES = {
     }
 }
 
+MIGRATION_MODULES = {
+    'accounts': 'migrations.accounts',
+    'task': 'migrations.task',
+}
+
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -142,6 +147,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Configure exteral sdk to handle the logger
 configure_observer(api_url="ERROR_API", error_key="ERROR_KEY")
 
 AUTH_USER_MODEL= 'accounts.CustomUserAccount'
@@ -155,3 +161,6 @@ REST_FRAMEWORK = {
 #Load the variable from .env
 ACCESS_TOKEN_VALIDITY_PERIOD_IN_MINUTES=datetime.timedelta(minutes=int(config('ACCESS_TOKEN_VALIDITY_PERIOD_IN_MINUTES')))
 REFRESH_TOKEN_VALIDITY_PERIOD_IN_MINUTES=datetime.timedelta(minutes=int(config('REFRESH_TOKEN_VALIDITY_PERIOD_IN_MINUTES')))
+GOOGLE_CLIENT_ID=config('GOOGLE_CLIENT_ID')
+GOOGLE_CLIENT_SECRET=config('GOOGLE_CLIENT_SECRET')
+GOOGLE_REDIRECT_URI=config('GOOGLE_REDIRECT_URI')
