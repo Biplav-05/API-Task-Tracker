@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'tasks',
+    'task',
     'accounts'
 ]
 
@@ -103,7 +103,7 @@ DATABASES = {
 
 MIGRATION_MODULES = {
     'accounts': 'migrations.accounts',
-    'tasks': 'migrations.tasks',
+    'task': 'migrations.task',
 }
 
 # Password validation
@@ -147,6 +147,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Configure exteral sdk to handle the logger
 configure_observer(api_url="ERROR_API", error_key="ERROR_KEY")
 
 AUTH_USER_MODEL= 'accounts.CustomUserAccount'

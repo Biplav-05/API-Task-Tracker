@@ -17,7 +17,7 @@ COPY . /backend-api/
 RUN chmod +x /backend-api/entrypoint.sh
 
 # Expose port 8000 to the outside world
-# EXPOSE 8000
+EXPOSE 8000
 
 # Define the command to run on container start
-# CMD ["/bin/sh", "/backend-api/entrypoint.sh"]
+CMD ["/bin/sh", "/backend-api/entrypoint.sh"]
