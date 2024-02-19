@@ -20,6 +20,7 @@ class Todo(models.Model):
     updated_at = models.DateTimeField(auto_now=True) 
     list = models.ForeignKey(List, on_delete=models.DO_NOTHING)
 
+    
     def save(self, *args, **kwargs):
         if not self.created_at:
             self.created_at = timezone.now()
