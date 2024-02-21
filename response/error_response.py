@@ -16,13 +16,13 @@ class Error(Exception):
     def __init__(self):
         self.errors = []
 
-    def add_errors(self, name, status, message):
-        self.errors = {'title': name, 'status': status, 'message': message}
+    def add_errors(self, name, message):
+        self.errors = {'title': name, 'message': message}
         return self.errors
 
 class ErrorResponse(Response):
 
     def __init__(self, errors, status_code=400):
         self.status_code = status_code_map.get(status_code)
-        self.errors = {'errors': errors.values()}
+        self.errors = {'errors': errors}
         super().__init__(data=self.errors, status=self.status_code)

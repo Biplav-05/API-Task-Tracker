@@ -19,7 +19,6 @@ class Todo(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True) 
     list = models.ForeignKey(List, on_delete=models.DO_NOTHING)
-
     
     def save(self, *args, **kwargs):
         if not self.created_at:
