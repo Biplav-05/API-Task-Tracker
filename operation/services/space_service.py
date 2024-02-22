@@ -21,18 +21,17 @@ class SpaceService():
         except Exception as e:
             return None, error.add_errors(name='Workspace creation failed', message={str(e)})
         
-    # def retrive(id, user_id):
-    #     work_space=WorkSpace.objects.get(id=id, user=user_id)
-    #     if work_space:
-    #         return work_space, None
-    #     return None, error.add_errors('Work Space error', 'Not found')
+    def retrive(id, work_space_id):
+        space=Space.objects.filter(id=id, work_space=work_space_id).first()
+        if space:
+            return space, None
+        return None, error.add_errors('Space error', 'Not found')
     
-    # def update(instance, data):
-    #     try:
-    #        for key, value in data.items():
-    #            setattr(instance, key, value)
-    #        instance.save()
-    #        return instance , None
-    #     except Exception as e:
-           
-    #         return None, {"error": error.add_errors('Not Foun',str(e))}
+    def update(instance, data):
+        try:
+           for key, value in data.items():
+               setattr(instance, key, value)
+           instance.save()
+           return instance , None
+        except Exception as e:
+            return None, {"error": error.add_errors('Not Found',str(e))}

@@ -20,12 +20,12 @@ class SpaceDetailSerializer(serializers.Serializer):
     work_space_id = serializers.IntegerField()
     name=serializers.CharField()
     description=serializers.CharField(required=False)
-    created_at=serializers.DateTimeField()
-    updated_at=serializers.DateTimeField()
+    created_at=serializers.DateTimeField(required=False)
+    updated_at=serializers.DateTimeField(required=False)
 
 class SpaceUpdateSerializer(serializers.Serializer):
     # id=serializers.IntegerField()
-    user_id = serializers.IntegerField()
+    work_space_id = serializers.IntegerField()
     name=serializers.CharField()
     description=serializers.CharField(required=False, allow_blank=True)
     created_at=serializers.DateTimeField(required=False)

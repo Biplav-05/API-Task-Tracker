@@ -32,32 +32,31 @@ class SpaceListView(APIView):
             
         return Response(data={'error':serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
-# class SpaceDetailView(APIView):
-#     def get(self, request, work_space_id):
-#         user_id=request.user.id
-#         work_space, error=WorkSpaceService.retrive(id=work_space_id, user_id=user_id)
+class SpaceDetailView(APIView):
+    def get(self, request, work_space_id, space_id):
+        space, error=SpaceService.retrive(space_id, work_space_id)
 
-#         if work_space:
-#             serializer=WorkSpaceDetailSerializer(work_space, many=True)
-#             return Response(data={'data':serializer.data}, status=status.HTTP_200_OK)
+        if space:
+            serializer=SpaceDetailSerializer(space)
+            return Response(data={'data':serializer.data}, status=status.HTTP_200_OK)
         
-#         return ErrorResponse(errors=error, status_code=404)
+        return ErrorResponse(errors=error, status_code=404)
 
-#     def put(self, request, work_space_id):
-#         #First checks the workspace with authenticte user exist or not
-#         work_space, error=WorkSpaceService.retrive(id=work_space_id,user_id=request.user.id)
-#         if error:
-#             return ErrorResponse(errors=error, status_code=404)
+    def put(self, request, work_space_id, space_id):
+        #First checks the workspace with authenticte user exist or not
+        work_space, error=SpaceService.retrive(space_id, work_space_id)
+        if error:
+            return ErrorResponse(errors=error, status_code=404)
 
-#         request.data.update({'user_id': request.user.id})
+        request.data.update({'work_space_id': work_space_id})
 
-#         serializer=WorkSpaceUpdateSerializer(data=request.data)
-#         if not serializer.is_valid():
-#             return Response(data={'error':serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+        serializer=SpaceUpdateSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(data={'error':serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
         
-#         work_space_, error=WorkSpaceService.update(work_space, serializer.validated_data)
-#         if work_space_:
-#             serializer_=WorkSpaceDetailSerializer(work_space_)
-#             return Response(data={'data':serializer_.data}, status=status.HTTP_200_OK)
+        space_, error=SpaceService.update(work_space, serializer.validated_data)
+        if space_:
+            serializer_=SpaceDetailSerializer(space_)
+            return Response(data={'data':serializer_.data}, status=status.HTTP_200_OK)
         
-#         return ErrorResponse(errors=error, status_code=400)
+        return ErrorResponse(errors=error, status_code=400)
