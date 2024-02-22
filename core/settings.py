@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'task',
-    'accounts'
+    'accounts',
+    'operation',
 ]
 
 
@@ -103,7 +103,7 @@ DATABASES = {
 
 MIGRATION_MODULES = {
     'accounts': 'migrations.accounts',
-    'task': 'migrations.task',
+    'operation': 'migrations.operation',
 }
 
 # Password validation
@@ -153,6 +153,9 @@ configure_observer(api_url="ERROR_API", error_key="ERROR_KEY")
 AUTH_USER_MODEL= 'accounts.CustomUserAccount'
 
 REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'accounts.authentication.AccountJWTAuthentication',
+    ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ]
