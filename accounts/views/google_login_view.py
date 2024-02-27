@@ -23,6 +23,8 @@ class UserGoogleLoginView(APIView):
         Passing the access token to get_google_user function will return the user data. This user data is either retrieved or created.
         New access and refresh token is then to provided to the user in reponse.
         """
+        test="hello"
+        request.data['access_token']=request.data['googleToken']
         # Get the access token from the request POST data
         serailizer = GoogleLoginSerializer(data=request.data)
         serailizer.is_valid(raise_exception=True)
