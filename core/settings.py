@@ -30,9 +30,6 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 CORS_ORIGIN_ALLOW_ALL = True
-# CORS_ALLOW_CREDENTIALS = True
-# CSRF_COOKIE_SECURE = False
-# SESSION_COOKIE_SECURE = False
 
 # Application definition
 
@@ -46,7 +43,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'accounts',
     'operation',
-    'corsheaders'
+
+    # third party app
+    'corsheaders',
 ]
 
 
@@ -58,8 +57,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
-    "django.middleware.common.CommonMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
