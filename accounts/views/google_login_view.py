@@ -24,6 +24,7 @@ class UserGoogleLoginView(APIView):
         New access and refresh token is then to provided to the user in reponse.
         """
         # Get the access token from the request POST data
+        request.data['access_token']=request.data['googleToken']
         serailizer = GoogleLoginSerializer(data=request.data)
         serailizer.is_valid(raise_exception=True)
         access_token = serailizer.validated_data['access_token']
